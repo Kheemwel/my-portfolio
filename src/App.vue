@@ -20,7 +20,7 @@ nav {
   justify-content: center;
   padding-top: 10px;
   border-bottom: 2px solid;
-  border-image: var(--gradient-blue-horizontal);
+  border-image: var(--gradient-fade-blue-fade-horizontal);
   border-image-slice: 1;
   background-color: var(--color-background);
 }
@@ -43,6 +43,8 @@ a.router-link-exact-active {
 }
 
 main {
-  overflow-y: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
 </style>

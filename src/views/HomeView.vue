@@ -58,6 +58,7 @@ const highlightProjects = myProjects
   padding: 200px 150px 50px 150px;
   gap: 250px;
   align-items: stretch;
+  overflow-y: auto;
 }
 
 #hero-section {
@@ -69,7 +70,7 @@ const highlightProjects = myProjects
 h1 {
   font: var(--text-display);
   border-bottom: 2px solid;
-  border-image: var(--gradient-neon-blue-fading);
+  border-image: var(--gradient-neon-blue-fade-horizontal);
   border-image-slice: 1;
   width: 500px;
 }

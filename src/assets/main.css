@@ -7,17 +7,23 @@
   --color-background: #212121;
   --color-card: #263238;
   --color-highlight: #607d8b;
-  --gradient-blue-horizontal: linear-gradient(
+  --gradient-fade-blue-fade-horizontal: linear-gradient(
     to right,
     transparent,
     var(--color-primary) 25%,
     var(--color-primary) 75%,
     transparent
   );
-  --gradient-neon-blue-fading: linear-gradient(
+  --gradient-neon-blue-fade-horizontal: linear-gradient(
     to right,
     var(--color-neon) 0%,
     var(--color-primary) 50%,
+    transparent 100%
+  );
+  --gradient-blue-fade-horizontal: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 75%,
     transparent 100%
   );
 }
@@ -26,8 +32,9 @@
 :root {
   --font-family: 'JetBrains Mono';
   --text-display: 800 48px var(--font-family);
-  --text-header: 400 32px var(--font-family);
   --text-header-bold: 700 32px var(--font-family);
+  --text-header: 400 32px var(--font-family);
+  --text-title-bold: 700 24px var(--font-family);
   --text-title: 400 24px var(--font-family);
   --text-subtitle: 300 20px var(--font-family);
   --text-label: 400 16px var(--font-family);
@@ -73,7 +80,6 @@ a {
 #app {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
