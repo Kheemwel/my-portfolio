@@ -25,12 +25,6 @@ nav {
   background-color: var(--color-background);
 }
 
-hr {
-  display: block;
-  box-sizing: border-box;
-  height: 10px;
-}
-
 a {
   width: 200px;
   height: 50px;

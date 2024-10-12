@@ -18,17 +18,17 @@ defineProps({
 </script>
 
 <template>
-    <div id="project">
+    <div class="project">
         <img :src=image>
         <h1>{{ title }}</h1>
-        <div id="tag-list">
+        <div class="tag-list">
             <TagWidget v-for="item in tags" :key="item">{{ item }}</TagWidget>
         </div>
     </div>
 </template>
 
 <style scoped>
-#project {
+.project {
     width: 450px;
     height: 350px;
     border-radius: 10px;
@@ -40,7 +40,7 @@ defineProps({
     align-items: center;
 }
 
-#project:hover {
+.project:hover {
     background-color: var(--color-highlight);
     outline: 2px solid var(--color-neon);
 }
@@ -55,12 +55,14 @@ h1 {
     font: var(--text-title);
 }
 
-#tag-list {
+.tag-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
     overflow-y: auto;
     padding: 5px 15px 5px 15px;
+    align-content: start;
+    height: 40px;
 }
 </style>
