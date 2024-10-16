@@ -18,12 +18,14 @@ function onSelected(index) {
 
 <template>
     <div class="tab-layout">
-        <div class="tabs">
+        <div>
             <TabRow :items=tabs @onSelected=onSelected />
         </div>
-        <div v-for="tab in tabs" :key="tab" class="content">
-            <slot :name=tabs.indexOf(tab) v-if="selectedIndex == tabs.indexOf(tab)" />
-        </div>
+        <template v-for="tab in tabs" :key="tab">
+            <div v-if="selectedIndex == tabs.indexOf(tab)" class="content">
+                <slot :name=tabs.indexOf(tab) />
+            </div>
+        </template>
     </div>
 </template>
 
@@ -36,7 +38,6 @@ function onSelected(index) {
 
 .content {
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
+    padding-top: 25px;
 }
 </style>
