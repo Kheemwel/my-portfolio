@@ -1,12 +1,18 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { computed } from 'vue';
+import { RouterView, useRoute } from 'vue-router'
+
+const route = useRoute()
+const isProjectsActive = computed(() => {
+  return route.path.startsWith('/projects') && !route.isExact;
+});
 </script>
 
 <template>
   <nav>
     <RouterLink to="/about">About</RouterLink>
     <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/projects">Projects</RouterLink>
+    <RouterLink to="/projects" :class="{ 'router-link-exact-active': isProjectsActive }">Projects</RouterLink>
   </nav>
   <main>
     <RouterView />
@@ -23,6 +29,7 @@ nav {
   border-image: var(--gradient-fade-blue-fade-horizontal);
   border-image-slice: 1;
   background-color: var(--color-background);
+  flex-shrink: 0;
 }
 
 a {
@@ -46,5 +53,6 @@ main {
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 </style>

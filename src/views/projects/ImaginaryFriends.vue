@@ -4,43 +4,42 @@ import ProjectCollaborators from '@/components/sub-components/ProjectCollaborato
 import ProjectOverview from '@/components/sub-components/ProjectOverview.vue';
 import ProjectTechnicalDetails from '@/components/sub-components/ProjectTechnicalDetails.vue';
 
-const tags = ['Capstone Project', 'Web App', 'Laravel']
+const tags = ['Visual Novel', "Ren'Py", 'Game Development']
 const images = ['../images/SampleImage1.png', '../images/SampleImage3.png', '../images/SampleImage4.png', '../images/icons/trophy.png',]
 const overview = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus autem atque nemo porro aliquid laborum voluptates fuga repellendus. Distinctio sed corrupti placeat inventore itaque maiores quasi voluptate nostrum explicabo."
 const description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus autem atque nemo porro aliquid laborum voluptates fuga repellendus. Distinctio sed corrupti placeat inventore itaque maiores quasi voluptate nostrum explicabo."
 const codeLink = 'https://github.com/Kheemwel/FLAGMS'
-const designLink = 'https://www.figma.com/design/tDnNZMGLHiVPaiqxchuqMY/FLAGMS-(Capstone-Project)?node-id=1915-3849&t=GMJt6BA0BOUNTBOx-1'
-const role = 'Back-end Developer'
-const date = 'September 11, 2023'
-const languages = ['../images/languages/php.png', '../images/languages/html.png', '../images/languages/css.png', '../images/languages/javascript.png', '../images/languages/mysql.png']
-const frameworks = ['../images/frameworks/laravel.png', '../images/frameworks/livewire.png', '../images/frameworks/bootstrap.png', '../images/frameworks/alpine-js.png']
-const tools = ['../images/tools/vscode.png', '../images/tools/xampp.png']
+const downloadLink = 'https://github.com/Kheemwel/Imaginary-Friends/releases/download/demo/Imaginary_Friends-Demo.apk'
+const role = 'Programmer'
+const date = 'March 2, 2023'
+const languages = ['../images/languages/python.png']
+const tools = ['../images/tools/renpy.png']
 const collaborators = [
     {
         name: 'Justine Mae Juanima',
-        role: 'Project Manager',
+        role: 'Author',
         link: 'https://github.com/JuanimaJM'
     },
     {
         name: 'Allysah Valerie Dela Cruz',
-        role: 'Front-end Developer',
+        role: 'UI Designer',
         link: ''
     },
     {
         name: 'Anne Louise Lopez',
-        role: 'UI/UX Designer',
+        role: 'UI Designer',
         link: 'https://github.com/anneldl'
     },
 ]
 </script>
 
 <template>
-    <ProjectLayout logo="../images/icons/trophy.png" title="FLAGMS">
+    <ProjectLayout logo="../images/icons/trophy.png" title="Imaginary Friends">
         <template #overview>
             <ProjectOverview :tags=tags :images=images :overview=overview :description=description />
         </template>
         <template #technical>
-            <ProjectTechnicalDetails :codeLink=codeLink :designLink=designLink :role=role :date=date
+            <ProjectTechnicalDetails :codeLink=codeLink :downloadLink=downloadLink :role=role :date=date
                 :languages=languages :frameworks=frameworks :tools=tools />
         </template>
         <template #collaborators>

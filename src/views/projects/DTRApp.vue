@@ -1,31 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import ProjectLayout from '@/components/layouts/ProjectLayout.vue';
 import ProjectCollaborators from '@/components/sub-components/ProjectCollaborators.vue';
 import ProjectOverview from '@/components/sub-components/ProjectOverview.vue';
 import ProjectTechnicalDetails from '@/components/sub-components/ProjectTechnicalDetails.vue';
 
-const tags = ['Capstone Project', 'Web App', 'Laravel']
+const tags = ['Mobile App', 'Flutter']
 const images = ['../images/SampleImage1.png', '../images/SampleImage3.png', '../images/SampleImage4.png', '../images/icons/trophy.png',]
 const overview = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus autem atque nemo porro aliquid laborum voluptates fuga repellendus. Distinctio sed corrupti placeat inventore itaque maiores quasi voluptate nostrum explicabo."
 const description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus autem atque nemo porro aliquid laborum voluptates fuga repellendus. Distinctio sed corrupti placeat inventore itaque maiores quasi voluptate nostrum explicabo."
-const codeLink = 'https://github.com/Kheemwel/FLAGMS'
-const designLink = 'https://www.figma.com/design/tDnNZMGLHiVPaiqxchuqMY/FLAGMS-(Capstone-Project)?node-id=1915-3849&t=GMJt6BA0BOUNTBOx-1'
-const role = 'Back-end Developer'
-const date = 'September 11, 2023'
-const languages = ['../images/languages/php.png', '../images/languages/html.png', '../images/languages/css.png', '../images/languages/javascript.png', '../images/languages/mysql.png']
-const frameworks = ['../images/frameworks/laravel.png', '../images/frameworks/livewire.png', '../images/frameworks/bootstrap.png', '../images/frameworks/alpine-js.png']
-const tools = ['../images/tools/vscode.png', '../images/tools/xampp.png']
+const codeLink = 'https://github.com/Kheemwel/dtr-app'
+const designLink = 'https://www.figma.com/design/MYHYjQh0xNldn8AkEag8qe/Daily-Time-Record-by-Kimwely?node-id=0-1&t=WbCqTiVDDzirQARk-1'
+const downloadLink = 'https://github.com/Kheemwel/dtr-app/releases/download/v0.2.0-rc1/dtr-v0.2.0-rc1.apk'
+const role = 'Lead Developer'
+const date = 'April 9, 2024'
+const languages = ['../images/languages/dart.png']
+const frameworks = ['../images/frameworks/flutter.png']
+const tools = ['../images/tools/vscode.png']
 const collaborators = [
-    {
-        name: 'Justine Mae Juanima',
-        role: 'Project Manager',
-        link: 'https://github.com/JuanimaJM'
-    },
-    {
-        name: 'Allysah Valerie Dela Cruz',
-        role: 'Front-end Developer',
-        link: ''
-    },
     {
         name: 'Anne Louise Lopez',
         role: 'UI/UX Designer',
@@ -35,13 +26,13 @@ const collaborators = [
 </script>
 
 <template>
-    <ProjectLayout logo="../images/icons/trophy.png" title="FLAGMS">
+    <ProjectLayout logo="../images/icons/idea.png" title="DTR App">
         <template #overview>
             <ProjectOverview :tags=tags :images=images :overview=overview :description=description />
         </template>
         <template #technical>
-            <ProjectTechnicalDetails :codeLink=codeLink :designLink=designLink :role=role :date=date
-                :languages=languages :frameworks=frameworks :tools=tools />
+            <ProjectTechnicalDetails :codeLink=codeLink :designLink=designLink :downloadLink=downloadLink :role=role
+                :date=date :languages=languages :frameworks=frameworks :tools=tools />
         </template>
         <template #collaborators>
             <ProjectCollaborators :collaborators=collaborators />

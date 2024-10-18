@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import TabRow from './TabRow.vue';
+import TabRow from '@/components/sub-components/TabRow.vue';
 
 defineProps({
     tabs: {

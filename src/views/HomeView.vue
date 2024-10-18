@@ -37,7 +37,7 @@ const highlightProjects = myProjects
       <h2>Recent Projects</h2>
       <div class="project-list">
         <ProjectPreview v-for="project in recentProjects" :key=project.title :title=project.title :image=project.image
-          :tags=project.tags />
+          :tags=project.tags :link=project.link />
       </div>
     </div>
 
@@ -45,7 +45,7 @@ const highlightProjects = myProjects
       <h2>Project Highlights</h2>
       <div class="project-list">
         <ProjectPreview v-for="project in highlightProjects" :key=project.title :title=project.title
-          :image=project.image :tags=project.tags />
+          :image=project.image :tags=project.tags :link=project.link />
       </div>
     </div>
   </div>

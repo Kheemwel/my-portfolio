@@ -1,4 +1,5 @@
 <script setup>
+import router from '@/router';
 import TagWidget from './widgets/TagWidget.vue';
 
 defineProps({
@@ -13,12 +14,20 @@ defineProps({
     tags: {
         type: Array,
         required: true
+    },
+    link: {
+        type: String,
+        required: true
     }
 })
+
+function openProject(link) {
+    router.push(link)
+}
 </script>
 
 <template>
-    <div class="project">
+    <div class="project" @click=openProject(link)>
         <img :src=image>
         <h1>{{ title }}</h1>
         <div class="tag-list">

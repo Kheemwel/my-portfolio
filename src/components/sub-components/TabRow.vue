@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import TabWidget from './widgets/TabWidget.vue';
+import TabWidget from '@/components/widgets/TabWidget.vue';
 
 const emit = defineEmits(['onSelected'])
 
