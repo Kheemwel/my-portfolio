@@ -1,7 +1,7 @@
 <template>
     <div class="button-download">
         <slot class="label" />
-        <img src="/images/download.png">
+        <img src="/images/icons/download.png">
     </div>
 </template>
 
@@ -14,6 +14,11 @@
     gap: 15px;
     padding: 10px;
     border-radius: 10px;
+}
+
+img {
+    width: 32px;
+    height: 32px;
 }
 
 .button-download:hover {

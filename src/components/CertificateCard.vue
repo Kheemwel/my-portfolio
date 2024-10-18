@@ -20,7 +20,7 @@ defineProps({
 
 <template>
     <div class="certificate" @click=openLink(file)>
-        <img src="/images/trophy.png">
+        <img src="/images/icons/trophy.png">
         <h1>{{ title }}</h1>
         <h2>{{ date }}</h2>
     </div>

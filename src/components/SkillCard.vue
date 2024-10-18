@@ -27,7 +27,9 @@ const rank = props.proficiency <= 40
 
 <template>
     <div class="skill">
-        <img :src="logo" alt="logo" class="skill-logo" />
+        <div class="skill-logo">
+            <img :src="logo" alt="logo" />
+        </div>
         <div class="skill-detail">
             <h1>{{ name }}</h1>
             <div class="rank">
@@ -52,6 +54,13 @@ const rank = props.proficiency <= 40
 .skill-logo {
     width: 64px;
     height: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+.skill-logo>img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .skill-detail {
