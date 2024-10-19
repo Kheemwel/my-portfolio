@@ -7,6 +7,10 @@
   --color-background: #212121;
   --color-card: #263238;
   --color-highlight: #607d8b;
+  --color-beginner: #f9a825;
+  --color-intermediate: #689f38;
+  --color-advanced: #7e57c2;
+  --color-expert: #ec407a;
   --gradient-fade-blue-fade-horizontal: linear-gradient(
     to right,
     transparent,
@@ -93,6 +97,7 @@ a {
 
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 #app {

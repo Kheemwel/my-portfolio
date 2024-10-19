@@ -12,15 +12,20 @@ defineProps({
 })
 
 const selectedIndex = ref(0)
+const tabRef = ref(null)
 
 function selectIndex(index) {
     selectedIndex.value = index
     emit('onSelected', index)
 }
+
+function horizontalScroll(event) {
+    tabRef.value.scrollLeft += event.deltaY
+}
 </script>
 
 <template>
-    <div class="tab-row">
+    <div class="tab-row" ref="tabRef" @wheel=horizontalScroll>
         <div class="tabs">
             <TabWidget v-for="item in items" :key=item :isSelected="selectedIndex == items.indexOf(item)"
                 @click=selectIndex(items.indexOf(item))>
@@ -37,6 +42,7 @@ function selectIndex(index) {
     border-image-slice: 1;
     display: flex;
     overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
 .tabs {
@@ -46,5 +52,10 @@ function selectIndex(index) {
 
 .tab-row::-webkit-scrollbar {
     height: 5px;
+    display: none;
+}
+
+.tab-row:hover::-webkit-scrollbar {
+    display: block;
 }
 </style>

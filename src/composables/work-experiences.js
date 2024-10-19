@@ -11,6 +11,6 @@ export const myWorkExperiences = [
         type: 'Work Immersion',
         job: 'Quality Assurance',
         date: 'December 2019 - January 2020',
-        location: 'Imus, Cavite'
+        location: 'Bacoor, Cavite'
     },
 ]

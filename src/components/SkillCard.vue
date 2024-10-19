@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 import CircularProgressBar from './widgets/CircularProgressBar.vue';
 
 const props = defineProps({
@@ -16,25 +17,34 @@ const props = defineProps({
     }
 })
 
-const rank = props.proficiency <= 40
-    ? "Beginner"
-    : props.proficiency <= 70
-        ? "Intermediate"
-        : props.proficiency <= 90
-            ? "Advanced"
-            : "Expert"
+const rank = ref('Beginner');
+const color = ref('var(--color-beginner)');
+
+onMounted(() => {
+    if (props.proficiency <= 40) {
+        rank.value = 'Beginner';
+        color.value = 'var(--color-beginner)';
+    } else if (props.proficiency <= 70) {
+        rank.value = 'Intermediate';
+        color.value = 'var(--color-intermediate)';
+    } else if (props.proficiency <= 90) {
+        rank.value = 'Advanced';
+        color.value = 'var(--color-advanced)';
+    } else {
+        rank.value = 'Expert';
+        color.value = 'var(--color-expert)';
+    }
+});
 </script>
 
 <template>
     <div class="skill">
-        <div class="skill-logo">
-            <img :src="logo" alt="logo" />
-        </div>
+        <img :src="logo" alt="logo" class="logo" />
         <div class="skill-detail">
             <h1>{{ name }}</h1>
             <div class="rank">
-                <h2>{{ rank }}</h2>
-                <CircularProgressBar :size="48" :value=proficiency />
+                <h2 :style="{ color: color }">{{ rank }}</h2>
+                <CircularProgressBar :size="48" :value=proficiency :indicatorColor=color />
             </div>
         </div>
     </div>
@@ -51,16 +61,10 @@ const rank = props.proficiency <= 40
     align-items: center;
 }
 
-.skill-logo {
+.logo {
     width: 64px;
     height: 64px;
-    display: flex;
-    justify-content: center;
-}
-
-.skill-logo>img {
-    max-width: 100%;
-    max-height: 100%;
+    object-fit: contain;
 }
 
 .skill-detail {

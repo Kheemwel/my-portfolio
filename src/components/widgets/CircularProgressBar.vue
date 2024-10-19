@@ -9,6 +9,14 @@ const props = defineProps({
     value: {
         type: Number,
         required: true
+    },
+    trackColor: {
+        type: String,
+        default: 'var(--color-text)'
+    },
+    indicatorColor: {
+        type: String,
+        default: 'var(--color-secondary)'
     }
 })
 
@@ -20,9 +28,9 @@ const strokeDashoffset = ref(strokeDasharray * ((100 - props.value) / 100))
 <template>
     <div class="donut">
         <svg :width=props.size :height=props.size viewBox="0 0 160 160" style="transform: rotate(-90deg)">
-            <circle :r=radius cx="80" cy="80" fill="transparent" stroke="var(--color-text)" stroke-width="20px">
+            <circle :r=radius cx="80" cy="80" fill="transparent" :stroke=trackColor stroke-width="20px">
             </circle>
-            <circle :r=radius cx="80" cy="80" fill="transparent" stroke="var(--color-primary)" stroke-linecap="round"
+            <circle :r=radius cx="80" cy="80" fill="transparent" :stroke=indicatorColor stroke-linecap="round"
                 stroke-width="20px" :stroke-dasharray=strokeDasharray :stroke-dashoffset=strokeDashoffset></circle>
         </svg>
         <span class="number">{{ value }}%</span>

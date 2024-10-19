@@ -18,29 +18,45 @@ import { openLink } from '@/composables/utility';
 
 const tabs = ['Summary', 'Educational Background', 'Work Experience', 'Certificates', 'Skills', 'Contacts', 'Resume']
 
-const technicalSkills = mySkills.technical.sort((a, b) => b.proficiency - a.proficiency)
+const technicalSkills = mySkills.technical.sort((a, b) => {
+    // Sort by type first
+    const typeOrder = ['language', 'framework', 'tool'];
+    const typeDiff = typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type);
+    if (typeDiff !== 0) {
+        return typeDiff;
+    }
 
-const appDevResume = 'docs/resume.pdf'
-const mobileDevResume = 'docs/resume.pdf'
-const webDevResume = 'docs/resume.pdf'
+    // Sort by proficiency within each type
+    return b.proficiency - a.proficiency;
+});
+
+const hardSkills = mySkills.hard.sort((a, b) => b.proficiency - a.proficiency)
+const softSkills = mySkills.soft.sort((a, b) => b.proficiency - a.proficiency)
+
+const appDevResume = 'docs/resume-app-dev.pdf'
+const mobileDevResume = 'docs/resume-mobile-dev.pdf'
+const webDevResume = 'docs/resume-web-dev.pdf'
 </script>
 
 <template>
     <div id="about">
-        <img src="/images/SampleProfile.jpg" id="profile">
+        <img src="/images/myprofile.jpg" id="profile">
         <div id="content">
             <h1 id="name">Kimwel Lourence C. Beller</h1>
             <TabLayout :tabs=tabs>
                 <template #0>
                     <div id="summary">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, rem velit. Commodi cumque
-                            animi
-                            labore, error nostrum, magni omnis beatae, nobis non ratione dolorum culpa porro deleniti
-                            adipisci aliquam voluptates?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, rem velit. Commodi cumque
-                            animi
-                            labore, error nostrum, magni omnis beatae, nobis non ratione dolorum culpa porro deleniti
-                            adipisci aliquam voluptates?</p>
+                        <p>I am an aspiring application developer dedicated to improving my skills in mobile and
+                            web application development. I seek to collaborate on team projects, contributing my
+                            knowledge while constantly learning and growing in the field of application development.</p>
+                        <p>I am a BSIT graduate from STI College Dasmariñas. My programming journey began in 2018 when I
+                            chose the ICT strand in grade 11. The first programming language I learned was Java, which
+                            was once my
+                            favorite. However, as I explored more programming languages, I grew to prefer Kotlin and
+                            Dart. During my senior high and college years, I gained experience in mobile, desktop, and
+                            web development, though I developed a particular liking for mobile development due to its
+                            convenience and the ability to always carry apps on my phone. While I also have an interest
+                            in game development, I prefer to pursue it as a hobby.</p>
                     </div>
                 </template>
                 <template #1>
@@ -73,15 +89,15 @@ const webDevResume = 'docs/resume.pdf'
                         <div class="skill-set">
                             <h1>Hard Skills</h1>
                             <div class="skills-list">
-                                <SkillCard v-for="skill in mySkills.hard" :key=skill.name :logo=skill.logo
-                                    :name=skill.name :proficiency=skill.proficiency />
+                                <SkillCard v-for="skill in hardSkills" :key=skill.name :logo=skill.logo :name=skill.name
+                                    :proficiency=skill.proficiency />
                             </div>
                         </div>
                         <div class="skill-set">
                             <h1>Soft Skills</h1>
                             <div class="skills-list">
-                                <SkillCard v-for="skill in mySkills.soft" :key=skill.name :logo=skill.logo
-                                    :name=skill.name :proficiency=skill.proficiency />
+                                <SkillCard v-for="skill in softSkills" :key=skill.name :logo=skill.logo :name=skill.name
+                                    :proficiency=skill.proficiency />
                             </div>
                         </div>
                     </div>
@@ -109,9 +125,11 @@ const webDevResume = 'docs/resume.pdf'
                 </template>
                 <template #6>
                     <div id="resume">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur quod sequi omnis
-                            dolores earum laudantium error possimus reprehenderit maiores quaerat id labore, deserunt
-                            nihil perspiciatis voluptas officiis provident facere similique.</p>
+                        <p>I am passionate about pursuing a career as an application developer, where I can apply and
+                            further enhance my skills in both web and mobile development. However, I am also open to
+                            roles that focus solely on web or mobile development. To give you flexibility in selecting a
+                            position that best matches my abilities, I have provided three versions of my resume, each
+                            tailored to different roles.</p>
                         <div id="resume-downloads">
                             <DownloadButton @click=openLink(appDevResume)>Application Developer Resume</DownloadButton>
                             <DownloadButton @click=openLink(mobileDevResume)>Mobile App Developer Resume
@@ -166,6 +184,7 @@ const webDevResume = 'docs/resume.pdf'
 
 #summary>p {
     font: var(--text-subtitle);
+    text-align: justify;
 }
 
 #education {
@@ -242,6 +261,7 @@ const webDevResume = 'docs/resume.pdf'
 
 #resume>p {
     font: var(--text-subtitle);
+    text-align: justify;
 }
 
 #resume-downloads {

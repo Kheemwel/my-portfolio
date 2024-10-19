@@ -37,6 +37,12 @@ defineProps({
     align-items: center;
     width: 250px;
     height: 250px;
+    cursor: pointer;
+    overflow-y: auto;
+}
+
+.certificate::-webkit-scrollbar {
+    display: none;
 }
 
 .certificate:hover {
@@ -51,9 +57,11 @@ img {
 
 h1 {
     font: var(--text-subtitle);
+    text-align: center;
 }
 
 h2 {
     font: var(--text-label-bold);
+    text-align: center;
 }
 </style>
