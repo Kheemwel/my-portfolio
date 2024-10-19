@@ -1,12 +1,13 @@
-<script setup lang="ts">
-import DiscordIcon from '@/components/icons/DiscordIcon.vue';
+<script setup>
 import FacebookIcon from '@/components/icons/FacebookIcon.vue';
 import GithubIcon from '@/components/icons/GithubIcon.vue';
 import InstagramIcon from '@/components/icons/InstagramIcon.vue';
 import LinkedinIcon from '@/components/icons/LinkedinIcon.vue';
 import ProjectPreview from '@/components/ProjectPreview.vue';
+import { myContacts } from '@/composables/contacts';
 
 import { myProjects } from '@/composables/project-list';
+import { openLink } from '@/composables/utility';
 
 // Top 2 most recent projects
 const recentProjects = [...myProjects]
@@ -23,13 +24,12 @@ const highlightProjects = myProjects
   <div id="home">
     <div id="hero-section">
       <h1>Hi 👋, I'm Kim</h1>
-      <p>I am a passionate application developer. For more information about me, just click here</p>
-      <div id="social-links">
-        <LinkedinIcon />
-        <GithubIcon />
-        <DiscordIcon />
-        <FacebookIcon />
-        <InstagramIcon />
+      <p>I am passionate about creating apps for web and mobile. I love bringing ideas to life through code!</p>
+      <div id="socials">
+        <LinkedinIcon @click=openLink(myContacts.linkedin) />
+        <GithubIcon @click=openLink(myContacts.github) />
+        <FacebookIcon @click=openLink(myContacts.facebook) />
+        <InstagramIcon @click=openLink(myContacts.instagram) />
       </div>
     </div>
 
@@ -79,7 +79,7 @@ p {
   font: var(--text-subtitle);
 }
 
-#social-links {
+#socials {
   display: flex;
   gap: 25px;
 }

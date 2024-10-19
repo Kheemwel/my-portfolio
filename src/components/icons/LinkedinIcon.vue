@@ -24,6 +24,7 @@ defineProps({
 <style scoped>
 svg {
     fill: url(#paint0_radial_29_79);
+    cursor: pointer;
 }
 
 svg:hover {
