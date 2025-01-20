@@ -1,85 +1,83 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { computed } from 'vue';
+import { RouterView, useRoute } from 'vue-router'
+
+const route = useRoute()
+const isProjectsActive = computed(() => {
+  return route.path.startsWith('/projects') && !route.isExact;
+});
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <nav>
+    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/projects" :class="{ 'router-link-exact-active': isProjectsActive }">Projects</RouterLink>
+  </nav>
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  border-bottom: 2px solid;
+  border-image: var(--gradient-fade-blue-fade-horizontal);
+  border-image-slice: 1;
+  background-color: var(--color-background);
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+a {
+  font: var(--text-header);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+a:hover {
+  background-color: var(--color-highlight);
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+a.router-link-exact-active {
+  background-color: var(--color-primary);
+  font: var(--text-header-bold);
 }
 
-nav a:first-of-type {
-  border: 0;
+main {
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 320px) {
+  a {
+    width: 114px;
+    height: 28px;
+  }
+}
+
+@media (min-width: 768px) {
+  a {
+    width: 133px;
+    height: 33px;
+  }
 }
 
 @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  a {
+    width: 160px;
+    height: 40px;
   }
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+@media (min-width: 1440px) {
+  a {
+    width: 200px;
+    height: 50px;
   }
 }
 </style>

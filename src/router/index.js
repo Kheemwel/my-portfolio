@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ProjectsView from '@/views/ProjectsView.vue'
+import AboutView from '@/views/AboutView.vue'
+import ProjectDetail from '@/views/ProjectDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,17 +10,36 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: { title: 'Portfolio | Home' }
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: ProjectsView,
+      meta: { title: 'Portfolio | Projects' },
+      children: [
+        {
+          path: '/projects/:title',
+          name: 'project-detail',
+          component: ProjectDetail
+        }
+      ]
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: AboutView,
+      meta: { title: 'Portfolio | About' }
     }
   ]
+})
+
+router.beforeEach((to) => {
+  if (to.name === 'project-detail') {
+    to.meta.title = `Portfolio | ${to.params.title}`
+  }
+  document.title = to.meta?.title ?? 'Portfolio'
 })
 
 export default router
