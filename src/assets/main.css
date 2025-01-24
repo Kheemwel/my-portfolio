@@ -1,35 +1,112 @@
-@import './base.css';
+@import url('https://fonts.googleapis.com/css?family=JetBrains Mono');
+
+/* Colors */
+:root {
+  --color-primary: #2196f3;
+  --color-secondary: #01579b;
+  --color-neon: #18ffff;
+  --color-text: #fafafa;
+  --color-background: #212121;
+  --color-card: #263238;
+  --color-highlight: #607d8b;
+  --color-beginner: #f9a825;
+  --color-intermediate: #689f38;
+  --color-advanced: #7e57c2;
+  --color-expert: #ec407a;
+  --gradient-fade-blue-fade-horizontal: linear-gradient(
+    to right,
+    transparent,
+    var(--color-primary) 25%,
+    var(--color-primary) 75%,
+    transparent
+  );
+  --gradient-fade-blue-fade-vertical: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-primary) 25%,
+    var(--color-primary) 75%,
+    transparent
+  );
+  --gradient-fade-neon-fade-vertical: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-neon) 25%,
+    var(--color-neon) 75%,
+    transparent
+  );
+  --gradient-neon-blue-fade-horizontal: linear-gradient(
+    to right,
+    var(--color-neon) 0%,
+    var(--color-primary) 50%,
+    transparent 100%
+  );
+  --gradient-blue-fade-horizontal: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 75%,
+    transparent 100%
+  );
+}
+
+/* Typography */
+:root {
+  --font-family: 'JetBrains Mono';
+  --text-display: 800 clamp(1.5rem, 1.214rem + 1.429vw, 2.5rem) var(--font-family);
+  --text-header-bold: 700 clamp(1rem, 0.786rem + 1.071vw, 1.75rem) var(--font-family);
+  --text-header: 400 clamp(1rem, 0.786rem + 1.071vw, 1.75rem) var(--font-family);
+  --text-title-bold: 700 clamp(0.75rem, 0.607rem + 0.714vw, 1.25rem) var(--font-family);
+  --text-title: 400 clamp(0.75rem, 0.607rem + 0.714vw, 1.25rem) var(--font-family);
+  --text-subtitle-bold: 700 clamp(0.625rem, 0.518rem + 0.536vw, 1rem) var(--font-family);
+  --text-subtitle: 300 clamp(0.625rem, 0.518rem + 0.536vw, 1rem) var(--font-family);
+  --text-label-bold: 700 clamp(0.5rem, 0.429rem + 0.357vw, 0.75rem) var(--font-family);
+  --text-label: 400 clamp(0.5rem, 0.429rem + 0.357vw, 0.75rem) var(--font-family);
+  --text-description: 100 clamp(0.5rem, 0.429rem + 0.357vw, 0.75rem) var(--font-family);
+  --text-mini: 400 0.5rem var(--font-family);
+}
+
+/* Scrollbar Width */
+::-webkit-scrollbar {
+  width: clamp(5px, 3.5714px + 0.4464vw, 10px);
+  height: clamp(5px, 3.5714px + 0.4464vw, 10px);
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+  background: var(--color-card);
+  border-radius: 90px;
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 90px;
+}
+
+/* Scrollbar Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
