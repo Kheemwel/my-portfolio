@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import CertificateCard from '@/components/CertificateCard.vue'
 import FacebookIcon from '@/components/icons/FacebookIcon.vue'
 import GithubIcon from '@/components/icons/GithubIcon.vue'
@@ -18,15 +18,7 @@ import { useSkillsStore } from '@/stores/skills-store'
 import { useContactsStore } from '@/stores/contacts-store'
 import { useResumeStore } from '@/stores/resumes-store'
 
-const tabs = [
-  'Summary',
-  'Educational Background',
-  'Work Experience',
-  'Certificates',
-  'Skills',
-  'Contacts',
-  'Resume'
-]
+const tabs = ['Summary', 'Educational Background', 'Work Experience', 'Certificates', 'Skills', 'Contacts', 'Resume']
 
 const initialAboutStore = useInitialAboutStore()
 const educationStore = useEducationStore()
@@ -157,15 +149,11 @@ const resumeStore = useResumeStore()
           <div id="resume">
             <pre id="resume-introduction"> {{ resumeStore.introduction }}</pre>
             <div id="resume-downloads">
-              <DownloadButton @click="openLink(resumeStore.appDevResume)"
-                >Application Developer Resume</DownloadButton
-              >
+              <DownloadButton @click="openLink(resumeStore.appDevResume)">Application Developer Resume</DownloadButton>
               <DownloadButton @click="openLink(resumeStore.mobileDevResume)"
                 >Mobile App Developer Resume
               </DownloadButton>
-              <DownloadButton @click="openLink(resumeStore.webDevResume)"
-                >Web Developer Resume</DownloadButton
-              >
+              <DownloadButton @click="openLink(resumeStore.webDevResume)">Web Developer Resume</DownloadButton>
             </div>
           </div>
         </template>

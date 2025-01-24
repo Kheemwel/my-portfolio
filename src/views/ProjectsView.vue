@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ProjectPreview from '@/components/ProjectPreview.vue'
 import { useProjectsStore } from '@/stores/projects-store'
 import { storeToRefs } from 'pinia'

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TooltipWidget from '../widgets/TooltipWidget.vue'
 
 defineProps({
@@ -15,16 +15,8 @@ defineProps({
 
 <template>
   <TooltipWidget :tooltip="tooltip">
-    <svg
-      :width="size"
-      :height="size"
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M22.9067 44.2133L35.12 32L22.9067 19.76L26.6667 16L42.6667 32L26.6667 48L22.9067 44.2133Z"
-      />
+    <svg :width="size" :height="size" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.9067 44.2133L35.12 32L22.9067 19.76L26.6667 16L42.6667 32L26.6667 48L22.9067 44.2133Z" />
     </svg>
   </TooltipWidget>
 </template>

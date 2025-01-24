@@ -1,11 +1,11 @@
-<script setup>
-import { computed } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 
 const route = useRoute()
 const isProjectsActive = computed(() => {
-  return route.path.startsWith('/projects') && !route.isExact;
-});
+  return route.path.startsWith('/projects') && route.path !== '/projects'
+})
 </script>
 
 <template>

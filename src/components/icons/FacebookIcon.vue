@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TooltipWidget from '../widgets/TooltipWidget.vue'
 
 defineProps({

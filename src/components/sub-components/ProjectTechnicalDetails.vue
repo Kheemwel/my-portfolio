@@ -1,23 +1,25 @@
-<script setup>
+<script setup lang="ts">
 import { openLink } from '@/composables/utility'
 import CodeIcon from '../icons/CodeIcon.vue'
 import DesignIcon from '../icons/DesignIcon.vue'
 import DownloadIcon from '../icons/DownloadIcon.vue'
 import WebsiteIcon from '../icons/WebsiteIcon.vue'
 import TooltipWidget from '../widgets/TooltipWidget.vue'
+import type { PropType } from 'vue'
+import type { Logo } from '@/domain/entities/logo'
 
 defineProps({
   codeLink: {
-    type: String
+    type: [String, null]
   },
   designLink: {
-    type: String
+    type: [String, null]
   },
   siteLink: {
-    type: String
+    type: [String, null]
   },
   downloadLink: {
-    type: String
+    type: [String, null]
   },
   role: {
     type: String,
@@ -28,14 +30,14 @@ defineProps({
     required: true
   },
   languages: {
-    type: Array,
+    type: Array as PropType<Logo[]>,
     required: true
   },
   frameworks: {
-    type: Array
+    type: Array as PropType<Logo[] | null>
   },
   tools: {
-    type: Array,
+    type: Array as PropType<Logo[]>,
     required: true
   }
 })
@@ -46,21 +48,9 @@ defineProps({
     <div class="section" v-if="codeLink || designLink || siteLink || downloadLink">
       <h1 class="label">Links</h1>
       <div class="list">
-        <CodeIcon
-          v-if="codeLink"
-          @click="openLink(codeLink)"
-          size="clamp(32px, 27.4286px + 1.4286vw, 48px)"
-        />
-        <DesignIcon
-          v-if="designLink"
-          @click="openLink(designLink)"
-          size="clamp(32px, 27.4286px + 1.4286vw, 48px)"
-        />
-        <WebsiteIcon
-          v-if="siteLink"
-          @click="openLink(siteLink)"
-          size="clamp(32px, 27.4286px + 1.4286vw, 48px)"
-        />
+        <CodeIcon v-if="codeLink" @click="openLink(codeLink)" size="clamp(32px, 27.4286px + 1.4286vw, 48px)" />
+        <DesignIcon v-if="designLink" @click="openLink(designLink)" size="clamp(32px, 27.4286px + 1.4286vw, 48px)" />
+        <WebsiteIcon v-if="siteLink" @click="openLink(siteLink)" size="clamp(32px, 27.4286px + 1.4286vw, 48px)" />
         <DownloadIcon
           v-if="downloadLink"
           @click="openLink(downloadLink)"

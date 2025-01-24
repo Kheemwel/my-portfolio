@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ProjectLayout from '@/components/layouts/ProjectLayout.vue'
 import ProjectCollaborators from '@/components/sub-components/ProjectCollaborators.vue'
 import ProjectOverview from '@/components/sub-components/ProjectOverview.vue'
@@ -12,45 +12,41 @@ const projectDetailStore = useProjectDetailStore()
 const { projectDetail } = storeToRefs(projectDetailStore)
 const route = useRoute()
 
-function fetchProjectDetails(title) {
+function fetchProjectDetails(title: string) {
   if (title) {
     projectDetailStore.fetchProjectDetail(title)
   }
 }
 
-onMounted(() => {
-  fetchProjectDetails(route.params.title)
-})
+onMounted(() => fetchProjectDetails(Array.isArray(route.params.title) ? route.params.title[0] : route.params.title))
 
 watch(
   () => route.params.title,
-  (newTitle) => {
-    fetchProjectDetails(newTitle)
-  }
+  (newTitle) => fetchProjectDetails(Array.isArray(newTitle) ? newTitle[0] : newTitle)
 )
 </script>
 
 <template>
   <ProjectLayout
-    :logo="projectDetail.logo"
+    :logo="projectDetail.logo_url"
     :title="projectDetail.title"
-    :hasCollaborators="projectDetail.collaborators && projectDetail.collaborators.length > 0"
+    :hasCollaborators="projectDetail.collaborators !== null && projectDetail.collaborators.length > 0"
   >
     <template #overview>
       <ProjectOverview
         :tags="projectDetail.tags"
-        :images="projectDetail.images"
+        :images="projectDetail.preview_images"
         :description="projectDetail.description"
       />
     </template>
     <template #technical>
       <ProjectTechnicalDetails
-        :codeLink="projectDetail.codeLink"
-        :designLink="projectDetail.designLink"
-        :downloadLink="projectDetail.downloadLink"
-        :siteLink="projectDetail.siteLink"
+        :codeLink="projectDetail.code_link"
+        :designLink="projectDetail.design_link"
+        :downloadLink="projectDetail.download_link"
+        :siteLink="projectDetail.website_link"
         :role="projectDetail.role"
-        :date="projectDetail.date"
+        :date="projectDetail.created_at"
         :languages="projectDetail.languages"
         :frameworks="projectDetail.frameworks"
         :tools="projectDetail.tools"

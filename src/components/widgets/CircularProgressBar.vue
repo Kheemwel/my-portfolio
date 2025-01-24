@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -27,20 +27,8 @@ const strokeDashoffset = ref(strokeDasharray * ((100 - props.value) / 100))
 
 <template>
   <div class="donut">
-    <svg
-      :width="props.size"
-      :height="props.size"
-      viewBox="0 0 160 160"
-      style="transform: rotate(-90deg)"
-    >
-      <circle
-        :r="radius"
-        cx="80"
-        cy="80"
-        fill="transparent"
-        :stroke="trackColor"
-        stroke-width="20px"
-      ></circle>
+    <svg :width="props.size" :height="props.size" viewBox="0 0 160 160" style="transform: rotate(-90deg)">
+      <circle :r="radius" cx="80" cy="80" fill="transparent" :stroke="trackColor" stroke-width="20px"></circle>
       <circle
         :r="radius"
         cx="80"

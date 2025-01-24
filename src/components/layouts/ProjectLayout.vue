@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import TabLayout from '@/components/layouts/TabLayout.vue'
@@ -27,7 +27,7 @@ const showSideTabs = ref(false)
 
 const tabs = computed(() => {
   const slots = useSlots()
-  var tab = ['Overview', 'Technical Details']
+  const tab = ['Overview', 'Technical Details']
   if (slots['collaborators'] && props.hasCollaborators) {
     tab.push('Collaborators')
   }
@@ -42,11 +42,7 @@ const { projectTitleList } = storeToRefs(projectTitleListStore)
   <div class="project-layout">
     <Transition>
       <div class="sidetab-container" v-show="showSideTabs">
-        <CloseButton
-          size="clamp(32px, 27.4286px + 1.4286vw, 48px)"
-          class="close"
-          @click="showSideTabs = false"
-        />
+        <CloseButton size="clamp(32px, 27.4286px + 1.4286vw, 48px)" class="close" @click="showSideTabs = false" />
         <nav class="sidetabs">
           <RouterLink
             v-for="projectTitle in projectTitleList"
@@ -60,11 +56,7 @@ const { projectTitleList } = storeToRefs(projectTitleListStore)
     </Transition>
     <div class="side-background" @click="showSideTabs = false" v-show="showSideTabs"></div>
     <div class="project-content">
-      <MenuButton
-        size="clamp(32px, 27.4286px + 1.4286vw, 48px)"
-        class="menu"
-        @click="showSideTabs = true"
-      />
+      <MenuButton size="clamp(32px, 27.4286px + 1.4286vw, 48px)" class="menu" @click="showSideTabs = true" />
       <div class="project-title">
         <img :src="logo" :alt="logo" />
         <h1>{{ title }}</h1>
