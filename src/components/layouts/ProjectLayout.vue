@@ -61,7 +61,7 @@ const { projectTitleList } = storeToRefs(projectTitleListStore)
         <img :src="logo" :alt="logo" />
         <h1>{{ title }}</h1>
       </div>
-      <TabLayout :tabs="tabs">
+      <TabLayout :tabs="tabs" :key="title">
         <template #0>
           <slot name="overview" />
         </template>
