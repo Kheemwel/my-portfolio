@@ -1,4 +1,5 @@
-import type { Certificate } from 'crypto'
+
+import type { Certificate } from '../entities/certificate'
 import type { Contact } from '../entities/contact'
 import type { Education } from '../entities/education'
 import type { InitialAbout } from '../entities/initial-about'

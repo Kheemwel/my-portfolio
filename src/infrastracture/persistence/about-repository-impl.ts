@@ -7,7 +7,7 @@ import type { Skill, Skills } from '@/domain/entities/skills'
 import type { Work } from '@/domain/entities/work'
 import type { AboutRepository } from '@/domain/repositories/i-about-repository'
 import { supabase } from '../services/supabase-client'
-import type { Certificate } from 'crypto'
+import type { Certificate } from '@/domain/entities/certificate'
 
 export class AboutRepositoryImpl implements AboutRepository {
   async fetchIntroduction(): Promise<Introduction> {

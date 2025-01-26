@@ -1,7 +1,7 @@
 import type { FetchCertificatesUseCase } from '@/application/usecases/about_usecases/fetch-certificates-usecase'
 import { TYPES } from '@/composables/types'
+import type { Certificate } from '@/domain/entities/certificate'
 import { container } from '@/inversify.config'
-import type { Certificate } from 'crypto'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
