@@ -3,6 +3,7 @@ import ProjectLayout from '@/components/layouts/ProjectLayout.vue'
 import ProjectCollaborators from '@/components/sub-components/ProjectCollaborators.vue'
 import ProjectOverview from '@/components/sub-components/ProjectOverview.vue'
 import ProjectTechnicalDetails from '@/components/sub-components/ProjectTechnicalDetails.vue'
+import { formatDate } from '@/composables/utility'
 import { useProjectDetailStore } from '@/stores/project-detail-store'
 import { storeToRefs } from 'pinia'
 import { onMounted, watch } from 'vue'
@@ -46,7 +47,7 @@ watch(
         :downloadLink="projectDetail.download_link"
         :siteLink="projectDetail.website_link"
         :role="projectDetail.role"
-        :date="projectDetail.created_at"
+        :date="formatDate(projectDetail.created_at)"
         :languages="projectDetail.languages"
         :frameworks="projectDetail.frameworks"
         :tools="projectDetail.tools"
