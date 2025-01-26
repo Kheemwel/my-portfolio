@@ -1,6 +1,6 @@
 export interface Work {
   id: number
-  comapny: string
+  company: string
   type: string
   job: string
   date: string

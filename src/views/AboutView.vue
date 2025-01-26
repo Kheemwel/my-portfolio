@@ -40,8 +40,8 @@ const resumeStore = useResumeStore()
         </template>
         <template #1>
           <div id="education">
-            <SchoolDetail level="Tertiary" :schools="educationStore.education.tertiary" />
-            <SchoolDetail level="Secondary" :schools="educationStore.education.secondary" />
+            <SchoolDetail v-if="educationStore.education" level="Tertiary" :schools="educationStore.education.tertiary" />
+            <SchoolDetail v-if="educationStore.education" level="Secondary" :schools="educationStore.education.secondary" />
           </div>
         </template>
         <template #2>
@@ -74,7 +74,7 @@ const resumeStore = useResumeStore()
               <h1>Technical Skills</h1>
               <div class="skills-list">
                 <SkillCard
-                  v-for="skill in skillsStore.skills.technical"
+                  v-for="skill in skillsStore.skills?.technical"
                   :key="skill.name"
                   :logo="skill.logo_url"
                   :name="skill.name"
@@ -86,7 +86,7 @@ const resumeStore = useResumeStore()
               <h1>Hard Skills</h1>
               <div class="skills-list">
                 <SkillCard
-                  v-for="skill in skillsStore.skills.hard"
+                  v-for="skill in skillsStore.skills?.hard"
                   :key="skill.name"
                   :logo="skill.logo_url"
                   :name="skill.name"
@@ -98,7 +98,7 @@ const resumeStore = useResumeStore()
               <h1>Soft Skills</h1>
               <div class="skills-list">
                 <SkillCard
-                  v-for="skill in skillsStore.skills.soft"
+                  v-for="skill in skillsStore.skills?.soft"
                   :key="skill.name"
                   :logo="skill.logo_url"
                   :name="skill.name"
