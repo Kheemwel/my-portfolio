@@ -1,5 +1,5 @@
 import { TYPES } from '@/composables/types'
-import type { Certificate } from '@/domain/entities/certificate-dto'
+import type { Certificate } from '@/domain/entities/certificate'
 import type { AboutRepository } from '@/domain/repositories/i-about-repository'
 import { inject, injectable } from 'inversify'
 
