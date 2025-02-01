@@ -17,58 +17,85 @@ const highlightProjectsStore = useHighlightProjectStore()
 <template>
   <div id="home">
     <div id="hero-section">
-      <h1>{{ introductionStore.greetings }}</h1>
-      <p>{{ introductionStore.introduction }}</p>
-      <div id="socials">
-        <LinkedinIcon
-          v-if="introductionStore.linkedin"
-          size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
-          @click="openLink(introductionStore.linkedin)"
-        />
-        <GithubIcon
-          v-if="introductionStore.github"
-          size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
-          @click="openLink(introductionStore.github)"
-        />
-        <FacebookIcon
-          v-if="introductionStore.facebook"
-          size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
-          @click="openLink(introductionStore.facebook)"
-        />
-        <InstagramIcon
-          v-if="introductionStore.instagram"
-          size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
-          @click="openLink(introductionStore.instagram)"
-        />
-      </div>
+      <v-skeleton-loader
+        type="heading, paragraph, avatar, avatar, avatar"
+        theme="dark"
+        v-if="introductionStore.loading"
+      />
+      <template v-else>
+        <h1>{{ introductionStore.greetings }}</h1>
+        <p>{{ introductionStore.introduction }}</p>
+        <div id="socials">
+          <LinkedinIcon
+            v-if="introductionStore.linkedin"
+            size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
+            @click="openLink(introductionStore.linkedin)"
+          />
+          <GithubIcon
+            v-if="introductionStore.github"
+            size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
+            @click="openLink(introductionStore.github)"
+          />
+          <FacebookIcon
+            v-if="introductionStore.facebook"
+            size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
+            @click="openLink(introductionStore.facebook)"
+          />
+          <InstagramIcon
+            v-if="introductionStore.instagram"
+            size="clamp(32px, 22.8571px + 2.8571vw, 64px)"
+            @click="openLink(introductionStore.instagram)"
+          />
+        </div>
+      </template>
     </div>
 
     <div class="project-previews">
-      <h2>Recent Projects</h2>
-      <div class="project-list">
-        <ProjectPreview
-          v-for="project in recentProjectsStore.recentProjects"
-          :key="project.title"
-          :title="project.title"
-          :image="project.cover_url"
-          :tags="project.tags"
-          :link="`/projects/${project.title}`"
-        />
+      <div v-if="recentProjectsStore.loading">
+        <v-skeleton-loader type="subtitle" theme="dark"/>
+        <v-row>
+          <v-col v-for="index in 2" :key="index">
+            <v-skeleton-loader type="image, chip, chip, chip" theme="dark"/>
+          </v-col>
+        </v-row>
       </div>
+      <template v-else>
+        <h2>Recent Projects</h2>
+        <div class="project-list">
+          <ProjectPreview
+            v-for="project in recentProjectsStore.recentProjects"
+            :key="project.title"
+            :title="project.title"
+            :image="project.cover_url"
+            :tags="project.tags"
+            :link="`/projects/${project.title}`"
+          />
+        </div>
+      </template>
     </div>
 
     <div class="project-previews">
-      <h2>Project Highlights</h2>
-      <div class="project-list">
-        <ProjectPreview
-          v-for="project in highlightProjectsStore.highlightProjects"
-          :key="project.title"
-          :title="project.title"
-          :image="project.cover_url"
-          :tags="project.tags"
-          :link="`/projects/${project.title}`"
-        />
+      <div v-if="highlightProjectsStore.loading">
+        <v-skeleton-loader type="subtitle" theme="dark"/>
+        <v-row>
+          <v-col v-for="index in 2" :key="index">
+            <v-skeleton-loader type="image, chip, chip, chip" theme="dark" />
+          </v-col>
+        </v-row>
       </div>
+      <template v-else>
+        <h2>Project Highlights</h2>
+        <div class="project-list">
+          <ProjectPreview
+            v-for="project in highlightProjectsStore.highlightProjects"
+            :key="project.title"
+            :title="project.title"
+            :image="project.cover_url"
+            :tags="project.tags"
+            :link="`/projects/${project.title}`"
+          />
+        </div>
+      </template>
     </div>
   </div>
 </template>

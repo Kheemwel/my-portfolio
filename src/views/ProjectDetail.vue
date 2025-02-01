@@ -28,7 +28,11 @@ watch(
 </script>
 
 <template>
+  <v-container v-if="projectDetailStore.loading">
+    <v-skeleton-loader type="avatar, heading, table-thead, subtitle, image, paragraph" theme="dark" />
+  </v-container>
   <ProjectLayout
+    v-else
     :logo="projectDetail.logo_url"
     :title="projectDetail.title"
     :hasCollaborators="projectDetail.collaborators !== null && projectDetail.collaborators.length > 0"

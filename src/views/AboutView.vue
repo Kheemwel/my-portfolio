@@ -30,7 +30,12 @@ const resumeStore = useResumeStore()
 </script>
 
 <template>
-  <div id="about">
+  <v-skeleton-loader
+    type="avatar, heading, table-thead, paragraph, paragraph"
+    v-if="initialAboutStore.loading"
+    theme="dark"
+  />
+  <div id="about" v-else>
     <img :src="initialAboutStore.avatar_url" id="profile" />
     <div id="content">
       <h1 id="name">{{ initialAboutStore.name }}</h1>
@@ -39,13 +44,31 @@ const resumeStore = useResumeStore()
           <div id="summary">{{ initialAboutStore.summary }}</div>
         </template>
         <template #1>
-          <div id="education">
-            <SchoolDetail v-if="educationStore.education" level="Tertiary" :schools="educationStore.education.tertiary" />
-            <SchoolDetail v-if="educationStore.education" level="Secondary" :schools="educationStore.education.secondary" />
+          <v-skeleton-loader
+            type="subtitle, list-item-three-line, subtitle, list-item-three-line"
+            v-if="educationStore.loading"
+            theme="dark"
+          />
+          <div id="education" v-else>
+            <SchoolDetail
+              v-if="educationStore.education"
+              level="Tertiary"
+              :schools="educationStore.education.tertiary"
+            />
+            <SchoolDetail
+              v-if="educationStore.education"
+              level="Secondary"
+              :schools="educationStore.education.secondary"
+            />
           </div>
         </template>
         <template #2>
-          <div id="work-experiences">
+          <v-skeleton-loader
+            type="subtitle, list-item-three-line, subtitle, list-item-three-line"
+            v-if="workStore.loading"
+            theme="dark"
+          />
+          <div id="work-experiences" v-else>
             <WorkExperienceDetail
               v-for="work in workStore.work"
               :key="work.company"
@@ -58,7 +81,14 @@ const resumeStore = useResumeStore()
           </div>
         </template>
         <template #3>
-          <div id="certificates">
+          <v-container v-if="certificatesStore.loading">
+            <v-row class="d-flex flex-wrap justify-center">
+              <v-col v-for="n in 4" :key="n" cols="12" sm="6" md="4" lg="3">
+                <v-skeleton-loader type="image" theme="dark" />
+              </v-col>
+            </v-row>
+          </v-container>
+          <div id="certificates" v-else>
             <CertificateCard
               v-for="cert in certificatesStore.certificates"
               :key="cert.title"
@@ -69,7 +99,15 @@ const resumeStore = useResumeStore()
           </div>
         </template>
         <template #4>
-          <div id="skills">
+          <v-container v-if="skillsStore.loading">
+            <v-skeleton-loader type="subtitle" theme="dark" />
+            <v-row class="d-flex flex-wrap justify-center">
+              <v-col v-for="n in 8" :key="n" cols="12" sm="4" md="4" lg="3">
+                <v-skeleton-loader type="image" theme="dark" />
+              </v-col>
+            </v-row>
+          </v-container>
+          <div id="skills" v-else>
             <div class="skill-set">
               <h1>Technical Skills</h1>
               <div class="skills-list">
@@ -109,7 +147,8 @@ const resumeStore = useResumeStore()
           </div>
         </template>
         <template #5>
-          <div id="contacts">
+          <v-skeleton-loader type="paragraph" theme="dark" v-if="contactsStore.loading" />
+          <div id="contacts" v-else>
             <div class="contacts-section">
               <h1>Social Links</h1>
               <div id="social-links">
@@ -146,7 +185,8 @@ const resumeStore = useResumeStore()
           </div>
         </template>
         <template #6>
-          <div id="resume">
+          <v-skeleton-loader type="paragraph, chip, chip, chip" theme="dark" v-if="resumeStore.loading" />
+          <div id="resume" v-else>
             <pre id="resume-introduction"> {{ resumeStore.introduction }}</pre>
             <div id="resume-downloads">
               <DownloadButton @click="openLink(resumeStore.appDevResume)">Application Developer Resume</DownloadButton>

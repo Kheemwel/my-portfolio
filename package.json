@@ -17,10 +17,11 @@
     "@supabase/supabase-js": "^2.48.0",
     "gh-pages": "^6.1.1",
     "inversify": "^6.2.1",
-    "reflect-metadata": "^0.2.2",
     "pinia": "^2.3.1",
+    "reflect-metadata": "^0.2.2",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.7.9"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
