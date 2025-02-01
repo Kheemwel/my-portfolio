@@ -128,8 +128,8 @@ function zoomImage(image: string) {
 }
 
 .zoom-image {
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 90vw;
+  max-height: 90vh;
   user-select: none;
 }
 
