@@ -12,26 +12,34 @@ import type { Certificate } from '@/domain/entities/certificate'
 export class AboutRepositoryImpl implements AboutRepository {
   async fetchIntroduction(): Promise<Introduction> {
     const { data, error } = await supabase
-      .from('about')
-      .select('greetings, introduction, linkedin, github, facebook, instagram')
-      .limit(1)
-      .single()
+      .from('about_me')
+      .select('key, value')
+      .in('key', ['greetings', 'introduction', 'linkedin', 'github', 'facebook', 'instagram'])
 
     if (error) {
       throw new Error(error.message)
     }
 
-    return data as Introduction
+    return data.reduce((acc: Introduction, { key, value }: { key: keyof Introduction; value: string }) => {
+      acc[key] = value
+      return acc
+    }, { greetings: "", introduction: "", linkedin: "", github: "", facebook: "", instagram: "" })
   }
 
   async fetchInitialAbout(): Promise<InitialAbout> {
-    const { data, error } = await supabase.from('about').select('name, avatar_url, summary').limit(1).single()
+    const { data, error } = await supabase
+      .from('about_me')
+      .select('key, value')
+      .in('key', ['name', 'avatar_url', 'summary'])
 
     if (error) {
       throw new Error(error.message)
     }
 
-    return data as InitialAbout
+    return data.reduce((acc: InitialAbout, { key, value }: { key: keyof InitialAbout; value: string }) => {
+      acc[key] = value
+      return acc
+    }, { name: "", avatar_url: "", summary: "" })
   }
 
   async fetchEducation(): Promise<Education> {
@@ -134,29 +142,33 @@ export class AboutRepositoryImpl implements AboutRepository {
 
   async fetchContacts(): Promise<Contact> {
     const { data, error } = await supabase
-      .from('about')
-      .select('email, contact_number, linkedin, github, facebook, instagram')
-      .limit(1)
-      .single()
+      .from('about_me')
+      .select('key, value')
+      .in('key', ['email', 'contact_number', 'linkedin', 'github', 'facebook', 'instagram'])
 
     if (error) {
       throw new Error(error.message)
     }
 
-    return data as Contact
+    return data.reduce((acc: Contact, { key, value }: { key: keyof Contact; value: string }) => {
+      acc[key] = value
+      return acc
+    }, { email: "", contact_number: "", linkedin: "", github: "", facebook: "", instagram: "" })
   }
 
   async fetchResumes(): Promise<Resume> {
     const { data, error } = await supabase
-      .from('about')
-      .select('resume_introduction, appdev_resume, mobiledev_resume, webdev_resume')
-      .limit(1)
-      .single()
+      .from('about_me')
+      .select('key, value')
+      .in('key', ['resume_introduction', 'appdev_resume', 'mobiledev_resume', 'webdev_resume'])
 
     if (error) {
       throw new Error(error.message)
     }
 
-    return data as Resume
+    return data.reduce((acc: Resume, { key, value }: { key: keyof Resume; value: string }) => {
+      acc[key] = value
+      return acc
+    }, { resume_introduction: "", appdev_resume: "", mobiledev_resume: "", webdev_resume: "" })
   }
 }
