@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Analytics } from '@vercel/analytics/vue';
 import { computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 
@@ -9,6 +10,7 @@ const isProjectsActive = computed(() => {
 </script>
 
 <template>
+  <Analytics />
   <nav>
     <RouterLink to="/about">About</RouterLink>
     <RouterLink to="/">Home</RouterLink>
