@@ -13,7 +13,9 @@ const TYPES = {
   FetchHighlightProjectsUseCase: Symbol.for('FetchHighlightProjectsUseCase'),
   FetchProjectsUseCase: Symbol.for('FetchProjectsUseCase'),
   FetchProjectTitleListUseCase: Symbol.for('FetchProjectTitleListUseCase'),
-  FetchProjectDetailUseCase: Symbol.for('FetchProjectDetailUseCase')
+  FetchProjectDetailUseCase: Symbol.for('FetchProjectDetailUseCase'),
+  ConfigRepository: Symbol.for('ConfigRepository'),
+  FetchConfigUseCase: Symbol.for('FetchConfigUseCase'),
 }
 
 export { TYPES }

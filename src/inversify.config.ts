@@ -16,6 +16,9 @@ import { FetchRecentProjectsUseCase } from './application/usecases/project_useca
 import { ProjectRepositoryImpl } from './infrastracture/persistence/project-repository-impl'
 import { TYPES } from './composables/types'
 import type { AboutRepository } from './domain/repositories/i-about-repository'
+import type { ConfigRepository } from './domain/repositories/i-config-repository'
+import { ConfigRepositoryImpl } from './infrastracture/persistence/config-repository-impl'
+import { FetchConfigUseCase } from './application/usecases/config_usecases/fetch-config-usecase'
 
 const container = new Container()
 
@@ -35,5 +38,8 @@ container.bind<FetchHighlightProjectsUseCase>(TYPES.FetchHighlightProjectsUseCas
 container.bind<FetchProjectsUseCase>(TYPES.FetchProjectsUseCase).to(FetchProjectsUseCase)
 container.bind<FetchProjectTitleListUseCase>(TYPES.FetchProjectTitleListUseCase).to(FetchProjectTitleListUseCase)
 container.bind<FetchProjectDetailUseCase>(TYPES.FetchProjectDetailUseCase).to(FetchProjectDetailUseCase)
+
+container.bind<ConfigRepository>(TYPES.ConfigRepository).to(ConfigRepositoryImpl)
+container.bind<FetchConfigUseCase>(TYPES.FetchConfigUseCase).to(FetchConfigUseCase)
 
 export { container }

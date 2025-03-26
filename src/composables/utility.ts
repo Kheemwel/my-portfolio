@@ -1,3 +1,5 @@
+import type { ConfigValue } from "./config"
+
 export function openLink(link: string, newTab = true) {
   const target = newTab ? '_blank' : '_self'
   window.open(link, target)
@@ -19,4 +21,13 @@ export function formatDate(dateString: string): string {
     day: 'numeric',
     year: 'numeric'
   }).format(date)
+}
+
+export function parseValue(value: string, type: string): ConfigValue {
+  switch (type) {
+    case 'integer': return parseInt(value, 10);
+    case 'boolean': return value === 'true';
+    case 'array': return JSON.parse(value);
+    default: return value;
+  }
 }

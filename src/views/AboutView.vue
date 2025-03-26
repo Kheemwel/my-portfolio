@@ -17,6 +17,9 @@ import { useCertificatesStore } from '@/stores/certificates-store'
 import { useSkillsStore } from '@/stores/skills-store'
 import { useContactsStore } from '@/stores/contacts-store'
 import { useResumeStore } from '@/stores/resumes-store'
+import { useConfigStore } from '@/stores/config-store'
+import { ref, watch } from 'vue'
+import { getConfigValue } from '@/composables/config'
 
 const tabs = ['Summary', 'Educational Background', 'Work Experience', 'Certificates', 'Skills', 'Contacts', 'Resume']
 
@@ -27,6 +30,15 @@ const certificatesStore = useCertificatesStore()
 const skillsStore = useSkillsStore()
 const contactsStore = useContactsStore()
 const resumeStore = useResumeStore()
+const configStore = useConfigStore()
+
+const showMoreResumes = ref(false)
+
+watch(
+  () => configStore.config,
+  (newConfig) => showMoreResumes.value = getConfigValue(newConfig, 'show_more_resumes', false),
+  { immediate: true }
+)
 </script>
 
 <template>
@@ -187,13 +199,13 @@ const resumeStore = useResumeStore()
         <template #6>
           <v-skeleton-loader type="paragraph, chip, chip, chip" theme="dark" v-if="resumeStore.loading" />
           <div id="resume" v-else>
-            <pre id="resume-introduction"> {{ resumeStore.introduction }}</pre>
+            <pre id="resume-introduction" v-if="showMoreResumes"> {{ resumeStore.introduction }}</pre>
             <div id="resume-downloads">
-              <DownloadButton @click="openLink(resumeStore.appDevResume)">Application Developer Resume</DownloadButton>
-              <DownloadButton @click="openLink(resumeStore.mobileDevResume)"
+              <DownloadButton @click="openLink(resumeStore.appDevResume)">Software Developer Resume</DownloadButton>
+              <DownloadButton @click="openLink(resumeStore.mobileDevResume)" v-if="showMoreResumes"
                 >Mobile App Developer Resume
               </DownloadButton>
-              <DownloadButton @click="openLink(resumeStore.webDevResume)">Web Developer Resume</DownloadButton>
+              <DownloadButton @click="openLink(resumeStore.webDevResume)" v-if="showMoreResumes">Web Developer Resume</DownloadButton>
             </div>
           </div>
         </template>
